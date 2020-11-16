@@ -29,7 +29,7 @@ namespace cdabtesttools.TestScenarios
 
         internal static bool CheckCompatibility(TargetSiteWrapper target)
         {
-            return target.Type == TargetType.DATAHUB || target.Type == TargetType.DIAS || target.Type == TargetType.ASF;
+            return target.Type == TargetType.DATAHUB || target.Type == TargetType.DIAS;
         }
 
         public IEnumerable<TestCase> CreateTestCases() {

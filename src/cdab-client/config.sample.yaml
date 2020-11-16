@@ -505,24 +505,6 @@ service_providers:
                     full_name: "{http://a9.com/-/opensearch/extensions/time/1.0/}start"
                     value: "[NOW-12M]"
                     label: "last 12 months"
-  ASF:
-    max_catalogue_thread: 5
-    max_download_thread: 2
-    data:
-      url: https://api.daac.asf.alaska.edu
-      credentials: username:password
-      catalogue:
-        # ONDA Catalogue collections' set definition
-        sets:
-          # ONDA has the Copernicus catalogue (see baselines definition) ...
-          Sentinel1:
-            # Identifier of the cxatalogue set configured in the data section
-            reference_set_id: Sentinel1
-            # ... as a baseline (used in TC5O1, TC502, TC601 & TC602)...
-            type: baseline  # The catalogue collections' set of type baseline are referering to common baseline defined globally
-            # ... with ApiHub as a reference ...
-            reference_target_site: ApiHub
-            # ... and with the following parameters to filter out only baseline
   ONDA:
     max_catalogue_thread: 5
     max_download_thread: 2

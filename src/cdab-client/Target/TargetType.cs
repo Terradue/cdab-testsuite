@@ -8,8 +8,6 @@
 
         UNKNOWN = 3,
 
-        ASF = 4,
-
         THIRDPARTY = 5
     }
 }

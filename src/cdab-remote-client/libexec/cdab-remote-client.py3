@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from cdab_shared import *
-from connectors import openstack, google, amazon
+from connectors import openstack
 import datetime
 from enum import Enum
 import io
@@ -81,13 +81,10 @@ class TestClient:
         'MUNDI': 'https://mundiwebservices.com',
         'ONDA': 'https://catalogue.onda-dias.eu/',
         'SOBLOO': 'https://sobloo.eu/',
-        'AMAZON': 'https://scihub.copernicus.eu/',
-        'GOOGLE': 'https://scihub.copernicus.eu/',
     }
 
     target_site_s3_uri_prefixes = {
         'MUNDI': 'https://obs.eu-de.otc.t-systems.com/',
-        'AMAZON': 'https://aws.amazon.com',
     }
 
     command_line = [
@@ -113,11 +110,10 @@ class TestClient:
     ]
 
     compute_parameters = [
-        { 'name': 'connector', 'description': "Connector type ('OpenStack', 'Google', 'Amazon')", 'default': 'OpenStack' },
+        { 'name': 'connector', 'description': "Connector type ('OpenStack')", 'default': 'OpenStack' },
         { 'name': 'auth_url', 'description': 'Authentication access point' },
         { 'name': 'username', 'description': 'Cloud username' },
         { 'name': 'password', 'description': 'Cloud password' },
-        { 'name': 'account_file', 'description': 'JSON authentication file for Google service account' },
         { 'name': 'project_name', 'description': 'Project name' },
         { 'name': 'project_id', 'description': 'Project ID' },
         { 'name': 'user_domain_name', 'description': 'User domain name' },
@@ -148,45 +144,32 @@ class TestClient:
                 "Assembly": "/usr/share/Stars-Terradue/Stars-Terradue.dll",
                 "Suppliers": {
                     "ONDA": {
-                    "Type": "Terradue.Data.Stars.Suppliers.DataHubSourceSupplier",
-                    "Parameters": [
-                        ""
-                    ],
-                    "ServiceUrl": "https://catalogue.onda-dias.eu/dias-catalogue"
+                        "Type": "Terradue.Data.Stars.Suppliers.DataHubSourceSupplier",
+                        "Parameters": [
+                            ""
+                        ],
+                        "ServiceUrl": "https://catalogue.onda-dias.eu/dias-catalogue"
                     },
                     "CREO": {
-                    "Type": "Terradue.Data.Stars.Suppliers.DataHubSourceSupplier",
-                    "Parameters": [
-                        ""
-                    ],
-                    "ServiceUrl": "https://finder.creodias.eu/resto/api/collections/describe.xml"
+                        "Type": "Terradue.Data.Stars.Suppliers.DataHubSourceSupplier",
+                        "Parameters": [
+                            ""
+                        ],
+                        "ServiceUrl": "https://finder.creodias.eu/resto/api/collections/describe.xml"
                     },
                     "SOBLOO": {
-                    "Type": "Terradue.Data.Stars.Suppliers.DataHubSourceSupplier",
-                    "Parameters": [
-                        ""
-                    ],
+                        "Type": "Terradue.Data.Stars.Suppliers.DataHubSourceSupplier",
+                        "Parameters": [
+                            ""
+                        ],
                     "ServiceUrl": "https://sobloo.eu/api/v1/services/search"
                     },
                     "MUNDI": {
-                    "Type": "Terradue.Data.Stars.Suppliers.DataHubSourceSupplier",
-                    "Parameters": [
-                        ""
-                    ],
-                    "ServiceUrl": "https://mundiwebservices.com/acdc/catalog/proxy/search"
-                    },
-                    "AMAZON": {
-                    "Type": "Terradue.Data.Stars.Suppliers.DataHubSourceSupplier",
-                    "Parameters": [
-                        ""
-                    ],
-                    "ServiceUrl": "https://aws.amazon.com"
-                    },
-                    "GOOGLE": {
-                    "Type": "Terradue.Data.Stars.Suppliers.DataHubSourceSupplier",
-                    "ServiceUrl": "https://storage.googleapis.com",
-                    "projectId": "still-tower-272111",
-                    "AccountFile": "/res/still-tower-272111-53008e24bcda.json"
+                        "Type": "Terradue.Data.Stars.Suppliers.DataHubSourceSupplier",
+                        "Parameters": [
+                            ""
+                        ],
+                        "ServiceUrl": "https://mundiwebservices.com/acdc/catalog/proxy/search"
                     }
                 },
                 "Translators": {
@@ -799,10 +782,6 @@ class TestClient:
             connector_str = self.compute_config['connector'].lower()
             if connector_str == 'openstack':
                 self.connector = openstack.OpenStackConnector(self)
-            elif connector_str == 'google':
-                self.connector = google.GoogleConnector(self)
-            elif connector_str == 'amazon':
-                self.connector = amazon.AmazonConnector(self)
             else:
                 exit_client(ERR_CONFIG, "Unknown connector: {0}".format(self.compute_config['connector']))
 
