@@ -1,4 +1,3 @@
-
 %define debug_package %{nil}
 %define __jar_repack  %{nil}
 %define _python_bytecompile_errors_terminate_build 0
@@ -35,9 +34,8 @@ cp -r %{_sourcedir}/etc %{buildroot}/usr/lib/cdab-remote-client/etc
 %post
 SUCCESS=0
 
-# Install OpenStack client, Google Cloud Platform Python API and Amazon AWS EC2 Python API
+# Install OpenStack client
 /opt/rh/rh-python36/root/usr/bin/pip install python-openstackclient==5.1.0
-/opt/rh/rh-python36/root/usr/bin/pip install google-api-python-client boto3
 
 # Add symlink to cdab-remote-client
 [ ! -f /usr/lib/cdab-remote-client/etc/config.yaml ] && cp /usr/lib/cdab-remote-client/etc/config.yaml.sample /usr/lib/cdab-remote-client/etc/config.yaml

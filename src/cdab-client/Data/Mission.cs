@@ -85,22 +85,11 @@ namespace cdabtesttools.Data
             // Sentinel1
             Mission s1Mission = new Mission("Sentinel-1", new LabelString("Sentinel-1", "Sentinel-1", GetIdentifierValidator(new Regex(@"^S1.*"))));
             s1Mission.Lifetime = new TimeRange("{http://a9.com/-/opensearch/extensions/time/1.0/}start", "{http://a9.com/-/opensearch/extensions/time/1.0/}end", new DateTime(2014, 04, 03), DateTime.UtcNow);
-            if (target != null && target.Type == TargetType.ASF)
-            {
-                s1Mission.PlatformIdentifiers = new StringListChoice("platformSerialIdentifier", "{http://a9.com/-/opensearch/extensions/eo/1.0/}platformSerialIdentifier",
-                    new LabelString[] {
-                        new LabelString("A", "A", GetIdentifierValidator(new Regex(@"^S1A.*"))),
-                        new LabelString("B", "B", GetIdentifierValidator(new Regex(@"^S1B.*")))
-                    });
-            }
-            else
-            {
-                s1Mission.PlatformIdentifiers = new StringListChoice("platformSerialIdentifier", "{http://a9.com/-/opensearch/extensions/eo/1.0/}platformSerialIdentifier",
-                    new LabelString[] {
-                        new LabelString("2014-016A", "A", GetIdentifierValidator(new Regex(@"^S1A.*"))),
-                        new LabelString("2016-025A", "B", GetIdentifierValidator(new Regex(@"^S1B.*")))
-                    });
-            }
+            s1Mission.PlatformIdentifiers = new StringListChoice("platformSerialIdentifier", "{http://a9.com/-/opensearch/extensions/eo/1.0/}platformSerialIdentifier",
+                new LabelString[] {
+                    new LabelString("2014-016A", "A", GetIdentifierValidator(new Regex(@"^S1A.*"))),
+                    new LabelString("2016-025A", "B", GetIdentifierValidator(new Regex(@"^S1B.*")))
+                });
             s1Mission.ProductTypes = new StringListChoice("productType", "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType",
                 new LabelString[] {
                     new LabelString("RAW", "Level-0 SAR raw data (RAW)", GetIdentifierValidator(new Regex(@"^S1.*_RAW_.*"))),
@@ -147,9 +136,6 @@ namespace cdabtesttools.Data
             s1Mission.Geometries = new GeometryFilterCollection("geom", "{http://a9.com/-/opensearch/extensions/geo/1.0/}geometry", features);
 
             missions.Add(s1Mission);
-
-            if (target != null && target.Type == TargetType.ASF)
-                return missions;
 
             // Sentinel2
             Mission s2Mission = new Mission("Sentinel-2", new LabelString("Sentinel-2", "Sentinel-2", GetIdentifierValidator(new Regex(@"^S2.*"))));

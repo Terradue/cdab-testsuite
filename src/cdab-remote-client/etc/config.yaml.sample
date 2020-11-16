@@ -25,10 +25,6 @@ service_providers:
     data:
       url: https://colhub.copernicus.eu/dhus
       # credentials:
-  ASF:
-    data:
-      url: https://api.daac.asf.alaska.edu
-      # credentials:
   CREO:
     data:
       url: https://finder.creodias.eu/resto/api/collections/describe.xml

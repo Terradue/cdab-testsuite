@@ -4,13 +4,10 @@ using System.Net;
 using cdabtesttools.Config;
 using cdabtesttools.Data;
 using Terradue.OpenSearch;
-using Terradue.OpenSearch.Asf;
 using Terradue.OpenSearch.DataHub;
 using Terradue.OpenSearch.DataHub.DHuS;
 using Terradue.OpenSearch.DataHub.Dias;
 using Terradue.OpenSearch.Engine;
-using Terradue.OpenSearch.DataHub.Aws;
-using Terradue.OpenSearch.DataHub.GoogleCloud;
 
 
 namespace cdabtesttools.Target
@@ -97,28 +94,10 @@ namespace cdabtesttools.Target
                 return TargetType.DIAS;
             }
 
-            if (Wrapper.Settings.ServiceUrl.Host == "api.daac.asf.alaska.edu")
-            {
-                log.DebugFormat("TARGET TYPE: ASF");
-                return TargetType.ASF;
-            }
-
             if (Wrapper.Settings.ServiceUrl.Host.EndsWith("copernicus.eu") || Wrapper.Settings.ServiceUrl.AbsolutePath.Contains("/dhus"))
             {
                 log.DebugFormat("TARGET TYPE: DATAHUB");
                 return TargetType.DATAHUB;
-            }
-
-            if (Wrapper.Settings.ServiceUrl.Host.EndsWith("amazon.com"))
-            {
-                log.DebugFormat("TARGET TYPE: AMAZON");
-                return TargetType.THIRDPARTY;
-            }
-
-            if (Wrapper.Settings.ServiceUrl.Host.EndsWith("googleapis.com") || Wrapper.Settings.ServiceUrl.Host.EndsWith("google.com"))
-            {
-                log.DebugFormat("TARGET TYPE: GOOGLE");
-                return TargetType.THIRDPARTY;
             }
 
             return TargetType.UNKNOWN;
@@ -163,11 +142,6 @@ namespace cdabtesttools.Target
                 return soblooDiasWrapper;
             }
 
-            if (target_uri.Host == "api.daac.asf.alaska.edu")
-            {
-                return new AsfApiWrapper(target_uri, (NetworkCredential)target_creds);
-            }
-
             if (target_uri.Host.EndsWith("copernicus.eu") || target_uri.AbsolutePath.EndsWith("/dhus"))
             {
                 if (filters != null && filters.GetFilters().Any(f => f.Key == "archiveStatus"))
@@ -177,20 +151,6 @@ namespace cdabtesttools.Target
                     return new DHuSWrapper(urib.Uri, (NetworkCredential)target_creds);
                 }
                 return new DHuSWrapper(target_uri, (NetworkCredential)target_creds);
-            }
-
-            if (target_uri.Host.EndsWith("amazon.com"))
-            {
-                var searchWrapper = new DHuSWrapper(new Uri("https://scihub.copernicus.eu/apihub"), (NetworkCredential)target_creds);
-                var amazonWrapper = new AmazonWrapper(targetSiteConfig.Data.S3SecretKey, targetSiteConfig.Data.S3KeyId, searchWrapper);
-                return amazonWrapper;
-            }
-
-            if (target_uri.Host.EndsWith("googleapis.com") || target_uri.Host.EndsWith("google.com"))
-            {
-                var searchWrapper = new DHuSWrapper(new Uri("https://scihub.copernicus.eu/apihub"), (NetworkCredential)target_creds);
-                var googleWrapper = new GoogleWrapper(targetSiteConfig.AccountFile, targetSiteConfig.ProjectId, searchWrapper);
-                return googleWrapper;
             }
 
             return null;
