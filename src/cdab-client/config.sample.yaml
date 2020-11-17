@@ -884,13 +884,13 @@ service_providers:
       user_domain_name: "user_domain_name"
       # Authentication region name (obtain value from region_name key in clouds.yaml). 
       # This setting is optional.
-      region_name: "GRA7"
+      region_name: "region_name"
       # Interface (obtain value from interface key in clouds.yaml).
       interface: "public"
       # Identity API version (obtain value from identity_api_version key in clouds.yaml).
       identity_api_version: 3
       # Preferred name of virtual machines to be created (sequential number is appended).
-      vm_name: "cdab-test-onda"
+      vm_name: "vm_name_prefix"
       # Name of predefined public key for SSH connection to new virtual machine 
       # (key pairs can be created on the OpenStack dashboard and the private key can be downloaded,
       # check under Compute > Key Pairs on the OpenStack dashboard).
@@ -1078,14 +1078,14 @@ service_providers:
       project_id: "prodject_id"
       project_name: "project_name"
       user_domain_name: "user_domain_name"
-      region_name: "RegionOne"
+      region_name: "region_name"
       interface: "public"
       identity_api_version: 3
-      vm_name: "cdab-test-creo"
+      vm_name: "vm_name_prefix"
       key_name: "key_name"
       image_name: "image_name"
       flavor_name: "flavor_name"
-      security_group: "allow_ping_ssh_rdp"
+      security_group: "security_group"
       floating_ip: True
       private_key_file: "/path/to/private/keyfile.pem"
       remote_user: "user"
@@ -1096,7 +1096,7 @@ service_providers:
       project_id: "prodject_id"
       project_name: "project_name"
       user_domain_name: "user_domain_name"
-      region_name: "RegionOne"
+      region_name: "region_name"
       storage_name: "teststorage"
       test_file: "path/to/testfile"
   MUNDI:
@@ -1363,11 +1363,11 @@ service_providers:
       user_domain_name: "user_domain_name"
       interface: "public"
       identity_api_version: 3
-      vm_name: "cdab-test-mundi"
+      vm_name: "vm_name_prefix"
       key_name: "key_name"
       image_name: "image_name"
       flavor_name: "flavor_name"
-      security_group: "default"
+      security_group: "security_group"
       floating_ip: True
       private_key_file: "/path/to/private/keyfile.pem"
       remote_user: "user"
