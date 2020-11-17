@@ -29,32 +29,6 @@ service_providers:
             # ... with ApiHub as a reference ...
             reference_target_site: ApiHub
             # ... and with the following parameters to filter out only baseline
-  S5PHub:
-    # Maximum number of thread querying the target catalogue service in parallel
-    max_catalogue_thread: 5
-    # Maximum number of thread downloading the target download service in parallel
-    max_download_thread: 2
-    # Data Access 
-    data:
-      # Entry Point (usually the URL to the catalogue)
-      url: https://s5phub.copernicus.eu/dhus
-      # Credentials (usually username:password/apiKey)
-      credentials: username:password
-      catalogue:
-        local_parameters:
-          # Parameters to filter only locally managed products (for TC301, TC502)
-          - key: "archiveStatus"
-            full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}statusSubType"
-            value: "online"
-            label: "online"
-        # ONDA Catalogue collections' set definition
-        sets:
-          # S5PHub has the Sentinel-5P (see baselines definition) ...
-          Copernicus-S5P:
-            # ... as a baseline (used in TC5O1, TC502, TC601 & TC602)...
-            type: baseline  # The catalogue collections' set of type baseline are referering to common baseline defined globally
-            # ... with Sentinel-5P pre-Ops Hub as a reference
-            reference_target_site: S5PHub
   SciHub:
     max_catalogue_thread: 1
     max_download_thread: 2
@@ -73,15 +47,7 @@ service_providers:
             reference_target_site: ApiHub
             # ... and with the following parameters to filter out only baseline
             parameters: # None for ONDA. All Copernicus products are baseline
-          # and the Sentinel-5P (see baselines definition) ...
-          Copernicus-S5P:
-            # ... as a baseline (used in TC5O1, TC502, TC601 & TC602)...
-            type: baseline  # The catalogue collections' set of type baseline are referering to common baseline defined globally
-            # ... with Sentinel-5P pre-Ops Hub as a reference
-            reference_target_site: S5PHub
-            # ... and with the following parameters to filter out only baseline
-            parameters: # None for ONDA. All S5P products are baseline
-          # Onda has a data offering... 
+          # SciHub has a data offering... 
           DataOffer:
             # ... defined as locally managed (TC503)
             type: local
@@ -174,15 +140,7 @@ service_providers:
             reference_target_site: ApiHub
             # ... and with the following parameters to filter out only baseline
             parameters: # None for ONDA. All Copernicus products are baseline
-          # and the Sentinel-5P (see baselines definition) ...
-          Copernicus-S5P:
-            # ... as a baseline (used in TC5O1, TC502, TC601 & TC602)...
-            type: baseline  # The catalogue collections' set of type baseline are referering to common baseline defined globally
-            # ... with Sentinel-5P pre-Ops Hub as a reference
-            reference_target_site: S5PHub
-            # ... and with the following parameters to filter out only baseline
-            parameters: # None for ONDA. All S5P products are baseline
-          # Onda has a data offering... 
+          # IntHub has a data offering... 
           DataOffer:
             # ... defined as locally managed (TC503)
             type: local
@@ -220,15 +178,7 @@ service_providers:
             reference_target_site: ApiHub
             # ... and with the following parameters to filter out only baseline
             parameters: # None for ONDA. All Copernicus products are baseline
-          # and the Sentinel-5P (see baselines definition) ...
-          Copernicus-S5P:
-            # ... as a baseline (used in TC5O1, TC502, TC601 & TC602)...
-            type: baseline  # The catalogue collections' set of type baseline are referering to common baseline defined globally
-            # ... with Sentinel-5P pre-Ops Hub as a reference
-            reference_target_site: S5PHub
-            # ... and with the following parameters to filter out only baseline
-            parameters: # None for ONDA. All S5P products are baseline
-          # Onda has a data offering... 
+          # ColHub has a data offering... 
           DataOffer:
             # ... defined as locally managed (TC503)
             type: local
@@ -321,15 +271,7 @@ service_providers:
             reference_target_site: ApiHub
             # ... and with the following parameters to filter out only baseline
             parameters: # None for ONDA. All Copernicus products are baseline
-          # and the Sentinel-5P (see baselines definition) ...
-          Copernicus-S5P:
-            # ... as a baseline (used in TC5O1, TC502, TC601 & TC602)...
-            type: baseline  # The catalogue collections' set of type baseline are referering to common baseline defined globally
-            # ... with Sentinel-5P pre-Ops Hub as a reference
-            reference_target_site: S5PHub
-            # ... and with the following parameters to filter out only baseline
-            parameters: # None for ONDA. All S5P products are baseline
-          # Onda has a data offering... 
+          # CopHub has a data offering... 
           DataOffer:
             # ... defined as locally managed (TC503)
             type: local
@@ -423,18 +365,6 @@ service_providers:
             type: baseline  # The catalogue collections' set of type baseline are referering to common baseline defined globally
             # ... with ApiHub as a reference ...
             reference_target_site: ApiHub
-            # ... and with the following parameters to filter out only baseline
-            parameters: # All Copernicus products are baseline. Just remove the very recent one to avoid newly ingested bias
-              - key: sensingStop
-                full_name: "{http://a9.com/-/opensearch/extensions/time/1.0/}end"
-                value: "[NOW-1D]"
-                label: "before yesterday"
-          # and the Sentinel-5P (see baselines definition) ...
-          Copernicus-S5P:
-            # ... as a baseline (used in TC5O1, TC502, TC601 & TC602)...
-            type: baseline  # The catalogue collections' set of type baseline are referering to common baseline defined globally
-            # ... with Sentinel-5P pre-Ops Hub as a reference
-            reference_target_site: S5PHub
             # ... and with the following parameters to filter out only baseline
             parameters: # All Copernicus products are baseline. Just remove the very recent one to avoid newly ingested bias
               - key: sensingStop
@@ -940,28 +870,6 @@ service_providers:
                 full_name: "{http://mapshup.info/-/resto/2.0/}exactCount"
                 value: "1"
                 label: "Exact count"
-          # and the Sentinel-5P (see baselines definition) ...
-          Copernicus-S5P:
-            # ... as a baseline (used in TC5O1, TC502, TC601 & TC602)...
-            type: baseline  # The catalogue collections' set of type baseline are referering to common baseline defined globally
-            # ... with Sentinel-5P pre-Ops Hub as a reference
-            reference_target_site: S5PHub
-            # ... and with the following parameters to filter out only baseline
-            parameters: # All Copernicus products are baseline. Just remove the very recent one to avoid newly ingested bias
-              - key: sensingStop
-                full_name: "{http://a9.com/-/opensearch/extensions/time/1.0/}end"
-                value: "[NOW-1D]"
-                label: "before yesterday"
-              # ESA-DATASET filter
-              - key: dataset
-                full_name: "{http://creodias.eu/namespace/sentinel}dataset"
-                value: "ESA-DATASET"
-                label: "ESA Baseline"
-              # exact count for creodias
-              - key: exactCount
-                full_name: "{http://mapshup.info/-/resto/2.0/}exactCount"
-                value: "1"
-                label: "Exact count"
           # CREODias has a data offering... 
           DataOffer:
             # ... defined as locally managed (TC503)
@@ -1125,20 +1033,6 @@ service_providers:
                 full_name: "{http://a9.com/-/opensearch/extensions/time/1.0/}end"
                 value: "[NOW-1D]"
                 label: "before yesterday"
-              # ESA-DATASET filter
-              - key: processingCenter
-                full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}processingCenter"
-                value: "ESA"
-                label: "ESA Baseline"
-          # and the Sentinel-5P (see baselines definition) ...
-          Copernicus-S5P:
-            # ... as a baseline (used in TC5O1, TC502, TC601 & TC602)...
-            type: baseline  # The catalogue collections' set of type baseline are referering to common baseline defined globally
-            # ... with Sentinel-5P pre-Ops Hub as a reference
-            reference_target_site: S5PHub
-            # ... and with the following parameters to filter out only baseline
-            parameters: # All Copernicus products are baseline. Just remove the very recent one to avoid newly ingested bias
-              -  
               # ESA-DATASET filter
               - key: processingCenter
                 full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}processingCenter"
@@ -1401,18 +1295,6 @@ service_providers:
                 full_name: "{http://a9.com/-/opensearch/extensions/time/1.0/}end"
                 value: "[NOW-1D]"
                 label: "before yesterday"
-          # and the Sentinel-5P (see baselines definition) ...
-          Copernicus-S5P:
-            # ... as a baseline (used in TC5O1, TC502, TC601 & TC602)...
-            type: baseline  # The catalogue collections' set of type baseline are referering to common baseline defined globally
-            # ... with Sentinel-5P pre-Ops Hub as a reference
-            reference_target_site: S5PHub
-            # ... and with the following parameters to filter out only baseline
-            parameters: # All Copernicus products are baseline. Just remove the very recent one to avoid newly ingested bias
-              - key: sensingStop
-                full_name: "{http://a9.com/-/opensearch/extensions/time/1.0/}end"
-                value: "[NOW-1D]"
-                label: "before yesterday"
           # Sobloo has a data offering... 
           DataOffer:
             # ... defined as locally managed (TC503)
@@ -1604,7 +1486,7 @@ service_providers:
 data:
   # This section defines all the logical sets of data
   sets:
-    # Copernicus set (without S5P not yet considered as operational)
+    # Copernicus set
     Copernicus:
       name: "Copernicus Product Types"
       collections:
@@ -1854,219 +1736,6 @@ data:
               full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}timeliness"
               value: "NTC"
               label: "Non Time Critical"
-    # Copernicus Sentinel-5p separate set (since not yet considered as operational)
-    Copernicus-S5P:
-      name: "Copernicus Sentinel-5P Product Types Pre-Ops"
-      collections:
-        Sentinel5P-L2__AER_AI:
-          label: "Sentinel-5P L2 AER AI"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__AER_AI"
-              label: "L2 AER AI"
-        Sentinel5P-L2__CH4___:
-          label: "Sentinel-5P L2 CH4"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__CH4___"
-              label: "L2 CH4"
-        Sentinel5P-L2__CLOUD_:
-          label: "Sentinel-5P L2 CLOUD"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__CLOUD_"
-              label: "L2 CLOUD"
-        Sentinel5P-L2__CO_____:
-          label: "Sentinel-5P L2 CO"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__CO_____"
-              label: "L2 CO"
-        Sentinel5P-L2__HCHO___:
-          label: "Sentinel-5P L2 HCHO"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__HCHO___"
-              label: "L2 HCHO"
-        Sentinel5P-L2__NO2___:
-          label: "Sentinel-5P L2 NO2"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__NO2___"
-              label: "L2 NO2"
-        Sentinel5P-L2__O3____:
-          label: "Sentinel-5P L2 O3"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__O3____"
-              label: "L2 O3"
-        Sentinel5P-L2__SO2___:
-          label: "Sentinel-5P L2 SO2"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__SO2___"
-              label: "L2 SO2"
-        Sentinel5P-L2__NP_BD3:
-          label: "Sentinel-5P L2 NP BAND 3"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__NP_BD3"
-              label: "L2 NP BAND 3"
-        Sentinel5P-L2__NP_BD6:
-          label: "Sentinel-5P L2 NP BAND 6"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__NP_BD6"
-              label: "L2 NP BAND 6"
-        Sentinel5P-L2__NP_BD7:
-          label: "Sentinel-5P L2 NP BAND 7"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__NP_BD7"
-              label: "L2 NP BAND 7"
-        Sentinel5P-L2__RA_BD1:
-          label: "Sentinel-5P L1B RA BAND 1"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__RA_BD1"
-              label: "L1B RA BAND 1"
-        Sentinel5P-L2__RA_BD2:
-          label: "Sentinel-5P L1B RA BAND 2"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__RA_BD2"
-              label: "L1B RA BAND 2"
-        Sentinel5P-L2__RA_BD3:
-          label: "Sentinel-5P L1B RA BAND 3"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__RA_BD3"
-              label: "L1B RA BAND 3"
-        Sentinel5P-L2__RA_BD4:
-          label: "Sentinel-5P L1B RA BAND 4"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__RA_BD4"
-              label: "L1B RA BAND 4"
-        Sentinel5P-L2__RA_BD5:
-          label: "Sentinel-5P L1B RA BAND 5"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__RA_BD5"
-              label: "L1B RA BAND 5"
-        Sentinel5P-L2__RA_BD6:
-          label: "Sentinel-5P L1B RA BAND 6"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__RA_BD6"
-              label: "L1B RA BAND 6"
-        Sentinel5P-L2__RA_BD7:
-          label: "Sentinel-5P L1B RA BAND 7"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__RA_BD7"
-              label: "L1B RA BAND 7"
-        Sentinel5P-L2__RA_BD8:
-          label: "Sentinel-5P L1B RA BAND 8"
-          parameters:
-            - key: missionName
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-              value: "Sentinel-5 Precursor"
-              label: "Sentinel-5P"
-            - key: productType
-              full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-              value: "L2__RA_BD8"
-              label: "L1B RA BAND 8"
     Sentinel1:
       name: "Sentinel-1 Product Types"
       collections:
