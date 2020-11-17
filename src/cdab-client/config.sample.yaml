@@ -39,7 +39,7 @@ service_providers:
       # Entry Point (usually the URL to the catalogue)
       url: https://s5phub.copernicus.eu/dhus
       # Credentials (usually username:password/apiKey)
-      credentials: s5pguest:s5pguest
+      credentials: username:password
       catalogue:
         local_parameters:
           # Parameters to filter only locally managed products (for TC301, TC502)
@@ -60,107 +60,6 @@ service_providers:
     max_download_thread: 2
     data:
       url: https://scihub.copernicus.eu/dhus
-      credentials: username:password
-      # Catalogue specific configuration
-      catalogue:
-        # CopHub Catalogue collections' set definition
-        sets:
-          # CopHub has the Copernicus catalogue (see baselines definition) ...
-          Copernicus:
-            # ... as a baseline (used in TC5O1, TC502, TC601 & TC602)...
-            type: baseline  # The catalogue collections' set of type baseline are referering to common baseline defined globally
-            # ... with ApiHub as a reference ...
-            reference_target_site: ApiHub
-            # ... and with the following parameters to filter out only baseline
-            parameters: # None for ONDA. All Copernicus products are baseline
-          # and the Sentinel-5P (see baselines definition) ...
-          Copernicus-S5P:
-            # ... as a baseline (used in TC5O1, TC502, TC601 & TC602)...
-            type: baseline  # The catalogue collections' set of type baseline are referering to common baseline defined globally
-            # ... with Sentinel-5P pre-Ops Hub as a reference
-            reference_target_site: S5PHub
-            # ... and with the following parameters to filter out only baseline
-            parameters: # None for ONDA. All S5P products are baseline
-          # Onda has a data offering... 
-          DataOffer:
-            # ... defined as locally managed (TC503)
-            type: local
-            # ... with ApiHub as a reference
-            reference_target_site: ApiHub
-            # collections' set definition
-            collections:
-              Sentinel1:
-                label: "Sentinel-1 last year"
-                parameters:
-                  - key: missionName
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-                    value: "Sentinel-1"
-                    label: "Sentinel-1"
-                  - key: sensingStart
-                    full_name: "{http://a9.com/-/opensearch/extensions/time/1.0/}start"
-                    value: "[NOW-12M]"
-                    label: "last 12 months"
-              Sentinel2:
-                label: "Sentinel-2 MSI last year"
-                parameters:
-                  - key: missionName
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-                    value: "Sentinel-2"
-                    label: "Sentinel-2"
-                  - key: sensingStart
-                    full_name: "{http://a9.com/-/opensearch/extensions/time/1.0/}start"
-                    value: "[NOW-12M]"
-                    label: "last 12 months"
-              Sentinel3-NonTimeCritical:
-                label: "Sentinel-3 Non Time Critical last year"
-                parameters:
-                  - key: missionName
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-                    value: "Sentinel-3"
-                    label: "Sentinel-3"
-                  - key: timeliness
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}timeliness"
-                    value: "NTC"
-                    label: "Non Time Critical"
-                  - key: sensingStart
-                    full_name: "{http://a9.com/-/opensearch/extensions/time/1.0/}start"
-                    value: "[NOW-12M]"
-                    label: "last 12 months"
-              Sentinel3-NearRealTime:
-                label: "Sentinel-3 Near Real Time last month"
-                parameters:
-                  - key: missionName
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-                    value: "Sentinel-3"
-                    label: "Sentinel-3"
-                  - key: timeliness
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}timeliness"
-                    value: "NRT"
-                    label: "Near Real Time"
-                  - key: sensingStart
-                    full_name: "{http://a9.com/-/opensearch/extensions/time/1.0/}start"
-                    value: "[NOW-12M]"
-                    label: "last 12 months"
-              Sentinel3-ShortTimeCritical:
-                label: "Sentinel-3 Short Time Critical last month"
-                parameters:
-                  - key: missionName
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-                    value: "Sentinel-3"
-                    label: "Sentinel-3"
-                  - key: timeliness
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}timeliness"
-                    value: "STC"
-                    label: "Short Time Critical"
-                  - key: sensingStart
-                    full_name: "{http://a9.com/-/opensearch/extensions/time/1.0/}start"
-                    value: "[NOW-12M]"
-                    label: "last 12 months"
-  HellenicHub:
-    max_catalogue_thread: 1
-    max_download_thread: 2
-    data:
-      url: https://sentinels.space.noa.gr/dhus
       credentials: username:password
       # Catalogue specific configuration
       catalogue:
@@ -975,14 +874,14 @@ service_providers:
       # Cloud username (same username as for access to the OpenStack dashboard).
       username: "login"
       # Cloud password (password for user).
-      # password: ""
+      password: "password"
       # Project ID (obtain value from project_id key in clouds.yaml). 
       # This setting is optional.
-      project_id: d6fae7e318114c248623562c0adce408
+      project_id: "prodject_id"
       # Project name (obtain value from project_name key in clouds.yaml).
-      project_name: "6611565740751529"
+      project_name: "project_name"
       # User domain name (obtain value from user_domain_name key in clouds.yaml).
-      user_domain_name: "Default"
+      user_domain_name: "user_domain_name"
       # Authentication region name (obtain value from region_name key in clouds.yaml). 
       # This setting is optional.
       region_name: "GRA7"
@@ -995,18 +894,18 @@ service_providers:
       # Name of predefined public key for SSH connection to new virtual machine 
       # (key pairs can be created on the OpenStack dashboard and the private key can be downloaded,
       # check under Compute > Key Pairs on the OpenStack dashboard).
-      key_name: "cdab-key"
+      key_name: "key_name"
       # Name of image to be used for new virtual machine 
       # (choose from Compute > Images on the OpenStack dashboard).
-      image_name: "Centos 7"
+      image_name: "image_name"
       # Name of flavour for new virtual machine 
       # (check under Compute > Instances > Launch Instance > Flavours/Flavors on the OpenStack dashboard).
-      flavor_name: "b2-7"
+      flavor_name: "flavor_name"
       # Location of the private key file for SSH connections to virtual machine 
       # (must correspond to public key in key_name).
-      private_key_file: "cdab-key-onda.pem"
+      private_key_file: "/path/to/private/keyfile.pem"
       # User on virtual machine for SSH connections.
-      remote_user: "centos"
+      remote_user: "user"
   CREO:
     max_catalogue_thread: 5
     max_download_thread: 5
@@ -1175,195 +1074,31 @@ service_providers:
     compute:
       auth_url: https://cf2.cloudferro.com:5000/v3
       username: "login"
-      # password: ""
-      project_id: 7236455993264b0c8970d22751b23562
-      project_name: "cloud_07455 project_without_eo"
-      user_domain_name: "cloud_07455"
+      password: "password"
+      project_id: "prodject_id"
+      project_name: "project_name"
+      user_domain_name: "user_domain_name"
       region_name: "RegionOne"
       interface: "public"
       identity_api_version: 3
       vm_name: "cdab-test-creo"
-      key_name: "cdab-key"
-      image_name: "CentOS 7"
-      flavor_name: "eo2.large"
+      key_name: "key_name"
+      image_name: "image_name"
+      flavor_name: "flavor_name"
       security_group: "allow_ping_ssh_rdp"
       floating_ip: True
-      private_key_file: "cdab-key-creodias.pem"
-      remote_user: "eouser"
+      private_key_file: "/path/to/private/keyfile.pem"
+      remote_user: "user"
     storage:
       auth_url: https://cf2.cloudferro.com:5000/v3
       username: "login"
-      # password: ""
-      project_id: 7236455993264b0c8970d22751b23562
-      project_name: "cloud_07455 project_without_eo"
-      user_domain_name: "cloud_07455"
+      password: "password"
+      project_id: "prodject_id"
+      project_name: "project_name"
+      user_domain_name: "user_domain_name"
       region_name: "RegionOne"
       storage_name: "teststorage"
       test_file: "path/to/testfile"
-  CODE_DE:
-    max_catalogue_thread: 5
-    max_download_thread: 5
-    data:
-      url: https://finder.code-de.org/resto/api/collections/describe.xml
-      credentials: username:password
-      catalogue:
-        # CREODias Catalogue collections' set definition
-        sets:
-          # CREODias has the Copernicus catalogue (see baselines definition) ...
-          Copernicus:
-            # Identifier of the cxatalogue set configured in the data section
-            reference_set_id: Copernicus
-            # ... as a baseline (used in TC5O1, TC502, TC601 & TC602)...
-            type: baseline  # The catalogue collections' set of type baseline are referering to common baseline defined globally
-            # ... with ApiHub as a reference ...
-            reference_target_site: ApiHub
-            # ... and with the following parameters to filter out only baseline
-            parameters: # All Copernicus products are baseline. Just remove the very recent one to avoid newly ingested bias
-              - key: sensingStop
-                full_name: "{http://a9.com/-/opensearch/extensions/time/1.0/}end"
-                value: "[NOW-1D]"
-                label: "before yesterday"
-              # ESA-DATASET filter
-              - key: dataset
-                full_name: "{http://creodias.eu/namespace/sentinel}dataset"
-                value: "ESA-DATASET"
-                label: "ESA Baseline"
-              # exact count for creodias
-              - key: exactCount
-                full_name: "{http://mapshup.info/-/resto/2.0/}exactCount"
-                value: "1"
-                label: "Exact count"
-          # and the Sentinel-5P (see baselines definition) ...
-          Copernicus-S5P:
-            # ... as a baseline (used in TC5O1, TC502, TC601 & TC602)...
-            type: baseline  # The catalogue collections' set of type baseline are referering to common baseline defined globally
-            # ... with Sentinel-5P pre-Ops Hub as a reference
-            reference_target_site: S5PHub
-            # ... and with the following parameters to filter out only baseline
-            parameters: # All Copernicus products are baseline. Just remove the very recent one to avoid newly ingested bias
-              - key: sensingStop
-                full_name: "{http://a9.com/-/opensearch/extensions/time/1.0/}end"
-                value: "[NOW-1D]"
-                label: "before yesterday"
-              # ESA-DATASET filter
-              - key: dataset
-                full_name: "{http://creodias.eu/namespace/sentinel}dataset"
-                value: "ESA-DATASET"
-                label: "ESA Baseline"
-              # exact count for creodias
-              - key: exactCount
-                full_name: "{http://mapshup.info/-/resto/2.0/}exactCount"
-                value: "1"
-                label: "Exact count"
-          # CREODias has a data offering... 
-          DataOffer:
-            # ... defined as locally managed (TC503)
-            type: local
-            # ... with ApiHub as a reference
-            reference_target_site: ApiHub
-            # collections' set definition
-            parameters:
-              # Parameters to filter only locally managed products (for TC503)
-              # ESA-DATASET filter
-              - key: dataset
-                full_name: "{http://creodias.eu/namespace/sentinel}dataset"
-                value: "ESA-DATASET"
-                label: "ESA Baseline"
-              # exact count for creodias
-              - key: exactCount
-                full_name: "{http://mapshup.info/-/resto/2.0/}exactCount"
-                value: "1"
-                label: "Exact count"
-            collections:
-              Sentinel1-RAW:
-                label: "Sentinel-1 RAW World last 6 months"
-                parameters:
-                  - key: missionName
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-                    value: "Sentinel-1"
-                    label: "Sentinel-1"
-                  - key: productType
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-                    value: "RAW"
-                    label: "RAW"
-                  - key: sensingStart
-                    full_name: "{http://a9.com/-/opensearch/extensions/time/1.0/}start"
-                    value: "[NOW-6M]"
-                    label: "Last 6 months"
-              Sentinel1-GRD:
-                label: "Sentinel-1 GRD World"
-                parameters:
-                  - key: missionName
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-                    value: "Sentinel-1"
-                    label: "Sentinel-1"
-                  - key: productType
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-                    value: "GRD"
-                    label: "GRD"
-              Sentinel1-OCN:
-                label: "Sentinel-1 GRD World"
-                parameters:
-                  - key: missionName
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-                    value: "Sentinel-1"
-                    label: "Sentinel-1"
-                  - key: productType
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-                    value: "OCN"
-                    label: "OCN"
-              Sentinel1-SLC-Europe:
-                label: "Sentinel-1 SLC Europe"
-                parameters:
-                  - key: missionName
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-                    value: "Sentinel-1"
-                    label: "Sentinel-1"
-                  - key: productType
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-                    value: "SLC"
-                    label: "SLC"
-                  - key: geom
-                    full_name: "{http://a9.com/-/opensearch/extensions/geo/1.0/}geometry"
-                    value: "POLYGON((-10.547 36.173,-2.109 36.031,6.855 38.548,11.25 37.996,20.391 34.452,35.156 34.162,42.363 67.942,26.895 72.342,-26.016 67.136,-10.547 36.173))"
-                    label: "Europe"
-              Sentinel1-SLC-World:
-                label: "Sentinel-1 SLC World last 6 months"
-                parameters:
-                  - key: missionName
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-                    value: "Sentinel-1"
-                    label: "Sentinel-1"
-                  - key: productType
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-                    value: "SLC"
-                    label: "SLC"
-                  - key: sensingStart
-                    full_name: "{http://a9.com/-/opensearch/extensions/time/1.0/}start"
-                    value: "[NOW-6M]"
-                    label: "Last 6 months"
-              Sentinel2-MSI1C:
-                label: "Sentinel-2 MSI Level-1C World"
-                parameters:
-                  - key: missionName
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-                    value: "Sentinel-2"
-                    label: "Sentinel-2"
-                  - key: productType
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}productType"
-                    value: "S2MSI1C"
-                    label: "S2MSI1C"
-              Sentinel3:
-                label: "Sentinel-3 World Non Time Critical"
-                parameters:
-                  - key: missionName
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}platform"
-                    value: "Sentinel-3"
-                    label: "Sentinel-3"
-                  - key: timeliness
-                    full_name: "{http://a9.com/-/opensearch/extensions/eo/1.0/}timeliness"
-                    value: "NTC"
-                    label: "Non Time Critical"
   MUNDI:
     max_catalogue_thread: 5
     max_download_thread: 2
@@ -1623,25 +1358,25 @@ service_providers:
     compute:
       auth_url: https://iam.eu-de.otc.t-systems.com:443/v3
       username: "login"
-      # password: ""
-      project_name: "eu-de"
-      user_domain_name: "OTC-EU-DE-00000000001000041106"
+      password: "password"
+      project_name: "project_name"
+      user_domain_name: "user_domain_name"
       interface: "public"
       identity_api_version: 3
       vm_name: "cdab-test-mundi"
-      key_name: "cdab-key"
-      image_name: "Standard_CentOS_7_latest"
-      flavor_name: "s2.large.4"
+      key_name: "key_name"
+      image_name: "image_name"
+      flavor_name: "flavor_name"
       security_group: "default"
       floating_ip: True
-      private_key_file: "cdab-key-mundi.pem"
-      remote_user: "linux"
+      private_key_file: "/path/to/private/keyfile.pem"
+      remote_user: "user"
     storage:
       auth_url: https://iam.eu-de.otc.t-systems.com:443/v3
       username: "login"
-      # password: ""
-      project_name: "eu-de"
-      user_domain_name: "OTC-EU-DE-00000000001000041106"
+      password: "password"
+      project_name: "project_name"
+      user_domain_name: "user_domain_name"
   SOBLOO:
     max_catalogue_thread: 5
     max_download_thread: 2
