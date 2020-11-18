@@ -2,7 +2,6 @@
 
 * ▶️ [Test Site Preparation (this page)](#test-site-preparation)
 * ⏬ [Run your first Test Scenario](Run-your-first-Test-Scenario)
-* ⏬ [Perform an End to End Use Case](Perform-an-E2E-Use-Case)
   
 
 ## Test Site Preparation

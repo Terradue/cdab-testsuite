@@ -281,8 +281,8 @@ The output of the console will show the progress of the Test Cases:
 2020-11-06T15:33:25.131797Z [INFO]  Available floating IP addresses: 80.158.58.122, 80.158.5.179, 80.158.7.134, 80.158.44.63, 80.158.47.173, 80.158.2.136
 2020-11-06T15:33:25.132001Z [INFO]  Start of execution
 2020-11-06T15:33:25.132699Z [INFO]  Creating virtual machine ...
-2020-11-06T15:33:25.133040Z [DEBUG] Command: openstack server create --wait -f json --os-auth-url https://iam.eu-de.otc.t-systems.com:443/v3 ... --image Standard_CentOS_7_latest --flavor s2.xlarge.4 --security-group default --key-name cdab-key cdab-test-mundi-48ca4482
-2020-11-06T15:33:48.463922Z [DEBUG] {'OS-DCF:diskConfig': 'MANUAL', 'OS-EXT-AZ:availability_zone': 'eu-de-02', 'OS-EXT-SRV-ATTR:host': '427e5f2455772765c077e9d92ff8be4637dca95ea7c10709c847ca6e', 'OS-EXT-SRV-ATTR:hypervisor_hostname': '4035e5c65d68a838def2626beab802359d92f74de080d2a2e9fdef54', 'OS-EXT-SRV-ATTR:instance_name': 'instance-00c5d922', 'OS-EXT-STS:power_state': 'Running', 'OS-EXT-STS:task_state': None, 'OS-EXT-STS:vm_state': 'active', 'OS-SRV-USG:launched_at': '2020-11-06T15:33:44.000000', 'OS-SRV-USG:terminated_at': None, 'accessIPv4': '', 'accessIPv6': '', 'addresses': 'd5734d54-268f-4a46-851a-37613b8ce820=192.168.0.87', 'adminPass': 'XFXVPkqiEj6p', 'config_drive': '', 'created': '2020-11-06T15:33:30Z', 'flavor': 's2.xlarge.4 (s2.xlarge.4)', 'hostId': '427e5f2455772765c077e9d92ff8be4637dca95ea7c10709c847ca6e', 'id': '506586c1-64f5-406b-8033-4673e22b6bb6', 'image': 'Standard_CentOS_7_latest (e945ee03-de1c-41d5-a174-566e3d3ef844)', 'key_name': 'cdab-key', 'name': 'cdab-test-mundi-48ca4482', 'progress': 0, 'project_id': 'fc4c0a99321b4bbe9bbc6d0f07726be5', 'properties': '', 'security_groups': "name='default'", 'status': 'ACTIVE', 'updated': '2020-11-06T15:33:44Z', 'user_id': 'ce060bd390f5442589e99e6a7a97a1c6', 'volumes_attached': "id='e284e32b-a4e3-4719-85d7-c27f898b001e'"}
+2020-11-06T15:33:25.133040Z [DEBUG] Command: openstack server create --wait -f json --os-auth-url https://iam.eu-de.otc.t-systems.com:443/v3 ... cdab-test-mundi-48ca4482
+2020-11-06T15:33:48.463922Z [DEBUG] {...}
 2020-11-06T15:33:48.464096Z [INFO]  Virtual machine '506586c1-64f5-406b-8033-4673e22b6bb6' created
 2020-11-06T15:33:48.464145Z [INFO]  Assigning floating IP address ...
 2020-11-06T15:33:48.464360Z [DEBUG] Command: openstack server add floating\ ip --os-auth-url https://iam.eu-de.otc.t-systems.com:443/v3 ... 506586c1-64f5-406b-8033-4673e22b6bb6 80.158.58.122
@@ -398,5 +398,3 @@ docker rm testsite-1
 ```
 
 > ⚠️ It is important to clean container after a benchmark session. Indeed, it contains its own image and all the data downloaded during the tests. Severall gigabytes of disk space may be used!
-
-> ⏭️ You can now [Perform an End to End Use Case](Perform-an-E2E-Use-Case)

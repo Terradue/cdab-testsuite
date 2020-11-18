@@ -20,7 +20,6 @@ Scenario ID | Title                                                             
 <a id="ts04"></a>TS04        | Offline data download                                            | TC204 → TC304
 <a id="ts05"></a>TS05        | Data Coverage Analysis                                           | TC501 → TC502
 <a id="ts06"></a>TS06        | Data Latency Analysis                                            | TC601 → TC602
-<a id="ts07"></a>TS07        | Storage Upload and Download Performance                          | TC701 → TC702
 
 ### Remote Test Scenarios
 
@@ -29,9 +28,7 @@ Scenario ID           | Title | Test cases        |
 <a id="ts11"></a>TS11 | Cloud services simple local data search and single local download on single virtual machines      | TC411 (→ TC211 → TC311)
 <a id="ts12"></a>TS12 | Cloud services complex local data search and multiple local download on multiple virtual machines | TC412 (→ TC212 → TC312)
 <a id="ts13"></a>TS13 | Cloud services simple local data search, download and simple processing of downloaded data        | TC413
-<a id="ts15"></a>TS15 | Cloud services processing of specific workflows                                                   | TC415 (→ TC416)
 
-Test Scenario 15 (TS15) covers several end-to-end scenarios which are independent of each other.
 
 
 ## Test Cases
@@ -166,17 +163,6 @@ The test client sends a remote web requests using the cloud services API of the 
 
 The obtained metrics are the same as in TC411.
 
-<a id="tc415"></a>
-### TC415: Automated Processing of End-to-End Scenario of Specific Applications
-
-This tests evaluates the cloud services capacity of the target site for provisioning virtual machines with the capability of running data-transforming pre-defined data-transforming algorithms in typical EO applications.
-The test client sends a request using the cloud services API of the target site to request a typical virtual machine. Once the machine is ready, the test case stages in its input data, executes the application matching the end-to-end scenario and compiles information about the success of the execution and related metrics.
-
-**Note:** This test case is unlike the others because it runs different tests based on the end-to-end scenario use case for which it is called. They all are part of TS15, but cover very different applications and need to be considered separately and compared only between the same end-to-end scenario. The end-to-end scenario used is specified by its numeric ID, so for use case 1 (end-to-end scenario 1) the scenario ID would be **TS15.1**
-
-The obtained metrics are the same as in TC411.
-
-
 <a id="tc501"></a>
 ### TC501: Catalogue Coverage
 
@@ -224,22 +210,3 @@ When a timeliness is applicable on a collection, searches are excluding the time
 
 The obtained metrics include the average and maximum data availability latency and information about result quality.
 
-
-<a id="tc701"></a>
-### TC701: Data Storage Upload Analysis
-
-This test evaluates the upload performance on a target site’s storage.
-The test client randomly generates a large file uploads it to a newly created storage.
-
-The obtained metrics include the data throughput, i.e. upload speed.
-
-
-<a id="tc702"></a>
-### TC702: Data Storage Download Analysis
-
-Test and evaluate the upload performance on a target site’s storage
-The test client randomly generates a large file uploads it to a newly created storage. Typical transmission performance metrics are recorded during the process.
-
-The test client downloads the file uploaded in TC701 from the storage which is deleted upon completion.
-
-The obtained metrics include the data throughput, i.e. download speed.
