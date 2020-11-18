@@ -82,7 +82,7 @@ The **cdab-remote-client** uses OpenStack which all DIAS providers support. Most
 * `floating_ip_network`: Network from which to assign floating IP. This setting is optional.
 * `private_key_file`: Location of the private key file for SSH connections to virtual machine (must correspond to public key in `key_name`).
 * `remote_user`: User on virtual machine for SSH connections.
-* `use_volume`: Create an external volume for docker image and test execution; this is useful for flavours that have very limited main disk. The size of the additional disk is 20 GB.
+* `use_volume`: Create an external volume for docker image and test execution; this is useful for flavours that have very limited main disk. The size of the additional disk is 100 GB.
 * `private_key_file`: Location of the private key file for SSH connections to virtual machine (must correspond to public key in `key_name`).
 * `remote_user`: User on virtual machine for SSH connections.
 * `vm_name`: Preferred name of virtual machines to be created (sequential number is appended).
