@@ -1,4 +1,4 @@
-[![Build Status](https://build.terradue.com/buildStatus/icon?job=Terradue%2Fcdab-testsuite%2Fb'master')](https://build.terradue.com/blue/organizations/jenkins/Terradue%2Fcdab-testsuite/activity?branch=b'master')
+[![Build Status](https://build.terradue.com/buildStatus/icon?job=Terradue%2Fcdab-testsuite%2Fdevelop)](https://build.terradue.com/job/Terradue/job/cdab-testsuite/job/develop/display/redirect)
 
 
 ![CDAB logo](doc/images/cdab-logo.jpg)
@@ -15,7 +15,6 @@ The current supported Target Sites are
   * [Copernicus Collaborative Data Hub (aka ColHub)](https://colhub.copernicus.eu/)
   * [Copernicus Sentinels International Access Hub (aka IntHub)](https://inthub.copernicus.eu/)
   * Any Data Access Hubs using [DHuS Data Hub](https://sentineldatahub.github.io) software
-  * [CODE-DE](https://code-de.org/)
 * DIASes
   * [CREODIAS](https://creodias.eu/)
   * [Mundi Web Services](https://mundiwebservices.com/)
