@@ -76,7 +76,7 @@ namespace cdabtesttools.Target
                 return TargetType.DIAS;
             }
 
-            if (Wrapper.Settings.ServiceUrl.Host == "finder.creodias.eu" || Wrapper.Settings.ServiceUrl.Host == "finder.code-de.org")
+            if (Wrapper.Settings.ServiceUrl.Host == "finder.creodias.eu")
             {
                 log.DebugFormat("TARGET TYPE: DIAS");
                 return TargetType.DIAS;
@@ -118,7 +118,7 @@ namespace cdabtesttools.Target
                 return new OndaDiasWrapper(new Uri(string.Format("https://catalogue.onda-dias.eu/dias-catalogue")), (NetworkCredential)target_creds, targetSiteConfig.Storage.ToOpenStackStorageSettings());
             }
 
-            if (target_uri.Host == "finder.creodias.eu" || target_uri.Host == "finder.code-de.org")
+            if (target_uri.Host == "finder.creodias.eu")
             {
                 if (targetSiteConfig.Data.Url != null)
                 {
