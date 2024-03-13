@@ -1,0 +1,22 @@
+export CDAB_RELEASE=$(cat build.yml | grep version | sed -E 's#.*: ?##g')
+docker run --rm -v /Users/floeschau/Work/repo/tools/cdab-testsuite:/pwd centos:7 /bin/bash /pwd/build-rpms.sh $CDAB_RELEASE
+
+Back on local machine:
+CDAB_CLIENT_RPM=$(basename $(ls -t /Users/floeschau/Work/repo/tools/cdab-testsuite/src/docker/cdab-client-*.rpm | head -1))
+CDAB_REMOTE_CLIENT_RPM=$(basename $(ls -t /Users/floeschau/Work/repo/tools/cdab-testsuite/src/docker/cdab-remote-client-*.rpm | head -1))
+
+echo "$CDAB_CLIENT_RPM"
+echo "$CDAB_REMOTE_CLIENT_RPM"
+
+docker build --build-arg CDAB_RELEASE=$CDAB_RELEASE --build-arg CDAB_CLIENT_RPM=$CDAB_CLIENT_RPM --build-arg CDAB_REMOTE_CLIENT_RPM=$CDAB_REMOTE_CLIENT_RPM src/docker
+
+exit
+
+# Tag new image
+docker tag <image-hash> registry.hub.docker.com/esacdab/testsuite:${CDAB_RELEASE}
+docker tag registry.hub.docker.com/esacdab/testsuite:${CDAB_RELEASE} registry.hub.docker.com/esacdab/testsuite:latest
+
+# Push image
+docker push registry.hub.docker.com/esacdab/testsuite:${CDAB_RELEASE}
+docker push registry.hub.docker.com/esacdab/testsuite:latest
+
